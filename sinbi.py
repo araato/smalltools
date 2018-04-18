@@ -12,8 +12,5 @@ ghost = ['벽수귀', '흑진귀', '팬텀토르소', '모주귀',\
         '장도한']
 
 import random
-ip = random.randrange(0, len(place))
-ig = random.randrange(0, len(ghost))
-
-print('{}에 {}'.format(place[ip], ghost[ig]))
+print('{}에 {}'.format(random.choice(place), random.choice(ghost)))
 
