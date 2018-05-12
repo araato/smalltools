@@ -4,8 +4,8 @@ import codecs
 import shutil
 
 
-startDir = r"D:\torrent\complete\Joan Jett Full Discography with Lives"
-toDir = r"D:\Share\모바일용Music\car16G\Joan Jett"
+startDir = r"D:\shared\Music"
+toDir = r"D:\shared\Music\Blues Collection Vol.03"
 
 def search(dirname):
     flist = os.listdir(dirname)
@@ -16,12 +16,27 @@ def search(dirname):
         else:
             doFileWork(next)
 
+def renRev(filepath) :
+    basename = os.path.basename(filepath)
 
+    if basename == '13 I love you 1000 times.mp3' :
+        return
+
+    if basename.split('.')[-1] == 'mp3' :
+        idx = len(basename) - 5
+        while not basename[idx].isdigit() :
+            idx -= 1
+        while basename[idx].isdigit() :
+            idx -= 1
+        changingname = basename[idx:]
+
+        if changingname != basename and len(changingname) > 4:
+            print('%s => %s'%(basename, changingname))
+            tobe = '%s\\%s'%(os.path.dirname(filepath), changingname.strip())
+            os.rename(filepath, tobe)
 
 def doFileWork(filename):
 
-    global startDir
-    global toDir
     ext = os.path.splitext(filename)[-1]
 
     if ext == '.mp3': 
@@ -34,7 +49,6 @@ def doFileWork(filename):
             shutil.copy(filename, dstFile)
         except shutil.SameFileError:
             pass
-        
 
         try :
             print(toFile)
