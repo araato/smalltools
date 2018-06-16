@@ -4,8 +4,8 @@ import codecs
 import shutil
 
 
-startDir = r"D:\shared\Music"
-toDir = r"D:\shared\Music\Blues Collection Vol.03"
+startDir = r"D:\Music\Jazz명반 100선"
+toDir = r"D:\Music\mobile\Jazz명반 100선"
 
 def search(dirname):
     flist = os.listdir(dirname)
@@ -44,6 +44,9 @@ def doFileWork(filename):
         toFile = filename.replace(startDir, "")[1:]
         
         dstFile = toDir + "\\" + toFile.replace("\\", "_")
+
+        if not os.path.isdir(os.path.dirname(dstFile)) :
+            os.makedirs(os.path.dirname(dstFile))
     
         try :
             shutil.copy(filename, dstFile)
